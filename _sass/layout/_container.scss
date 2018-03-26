@@ -1,0 +1,31 @@
+// ***
+// This container adheres to the 960 grid system. The 960-grid works well for
+// displays because the number 960 is easily divisble by several numbers.
+// This divisibility allows for an easy grid display. This container has a width
+// of 1000px, with a left padding of 20px and a right padding of 20px.
+// With padding, the space for content is 960px. The reason why I choose
+// to design the container this way is this: We tackle two problems with
+// a single solution. That is, we have a 960px setup, and when the screen
+// of the viewing device becomes small, the padding will help to push
+// the content away from the edges of the screen.
+.container {
+    max-width: 900px;
+    max-width: 660px; // 768px = 960px - 96px - 96px
+    margin: {
+        left: auto;
+        right: auto;
+    };
+    padding: {
+        left: 20px;
+        right: 20px;
+    }
+}
+
+// Stops container from wrapping and centering
+.container--full {
+    width: auto !important;
+    margin: {
+        left: 0rem !important;
+        right: 0rem !important;
+    }
+}

@@ -1,0 +1,33 @@
+.board {
+    border-style: solid;
+    border-color: #E0E0E0;
+}
+
+.board--white {
+    background-color: $pure-white;
+}
+
+.board--borderLeft {
+    border-left-width: 1px;
+}
+
+.board--borderRight {
+    border-right-width: 1px;
+}
+
+.board--borderTop {
+    border-top-width: 1px;
+}
+
+.board--borderBottom {
+    border-bottom-width: 1px;
+}
+
+.board--borderRules {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.board--borderFull {
+    border-width: 1px;
+}

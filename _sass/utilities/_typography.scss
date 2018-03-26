@@ -1,0 +1,39 @@
+
+/* Font Utilities */
+
+.u-fontItalic {
+    font-style: italic !important;
+}
+
+.u-fontLight {
+    font-weight: 300 !important;
+}
+
+.u-fontRegular {
+    font-weight: 400 !important;
+}
+
+.u-fontSemiBold {
+    font-weight: 600 !important;
+}
+
+.u-fontBold {
+    font-weight: 700 !important;
+}
+
+.u-fontExtraBold {
+    font-weight: 800 !important;
+}
+
+
+/* Text decoration */
+
+.u-textUnderlineOnHover:hover {
+    text-decoration: underline !important;
+}
+
+/* Text ruling */
+
+.u-textAlignCenter {
+    text-align: center !important;
+}

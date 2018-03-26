@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+    <div class="app">
+        <div class="app-nav">
+            {% include nav.html %}
+        </div>
+        <div class="app-main"> 
+            <div class="container">
+                <div class="canopy">
+                    <div class="canopy-inner">
+                        <div class="u-logo--highlightOnHover">
+                            <a class="canopy-link--elusive" href="{{ site.url | absolute_url }}">
+                                <div class="canopy-logo">
+                                    <div class="logo logo--center logo--140px"></div>
+                                </div>
+                            </a>
+                            <a class="canopy-title" href="{{ site.url | absolute_url }}">{{ site.title }}</a>
+                        </div>
+                        <h4 class="canopy-byline">By {{ site.byline }}</h4>
+                        <h3 class="canopy-description">{{ site.description }}</h3>
+                    </div>
+                </div>
+                <div class="posts">
+                    {% for post in site.posts %}
+                        {% include post.html %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

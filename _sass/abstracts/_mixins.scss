@@ -1,0 +1,38 @@
+//==============================================================================
+// Mixins for clearfix
+//==============================================================================
+
+// Ouputs clearfix rules.
+ @mixin clearfix {
+    content: "." !important;
+    visibility: hidden !important;
+    display: block !important;
+    height: 0px !important;
+    clear: both !important;
+ }
+
+//==============================================================================
+// Mixins for vendor-safe rules
+//==============================================================================
+
+// Outputs vendor-safe box shadow rules.
+//
+// @param $value The value of the border shadow rule.
+//
+// @output Vendor-safe box shadow rules.
+@mixin box-shadow ($value) {
+    box-shadow: $value;
+    -moz-box-shadow: $value;
+    -webkit-box-shadow: $value;
+}
+
+// Output vendor-safe border radius rules.
+//
+// @param $value The value of the border radius rule.
+//
+// @output Vendor-safe border radius rules.
+@mixin border-radius ($value) {
+    border-radius: $value;
+    -moz-border-radius: $value;
+    -webkit-border-radius: $value;
+}

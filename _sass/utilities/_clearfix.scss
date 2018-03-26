@@ -1,0 +1,5 @@
+/* Clearfix utility */
+
+.u-clearfix::after {
+    @include clearfix;
+}

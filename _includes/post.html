@@ -1,0 +1,41 @@
+{% comment %}
+    This include file serves to reduce duplication. Any changes to this file
+    will reflect in the places.
+
+    This include file assumes that the variable `post` is set and is a post
+    from `site.posts`. If the page is a post, that we display the post content.
+    However, if the page is a post from `site.posts` then display the post's
+    excerpt  and the 'read more' link.
+{% endcomment%}
+
+{% if page.is_post %}
+    {% assign article = page %}
+{% else %}
+    {% assign article = post %}
+{% endif %}
+
+<div class="post">
+    <div class="post-meta">
+        <time class="post-date">{{ article.date | date: "%b %d, %Y" }}</time>
+        <h1 class="post-heading"><a class="post-link" href="{{ post.url | absolute_url }}">{{ article.title }}</a></h1>
+    </div>
+    {% if page.is_post %}
+        <div class="post-content">
+            {{ content }}
+        </div>
+    {% else %}
+        <a class="post-link" href="{{ post.url | absolute_url }}">
+            <div class="post-content">
+                {{ article.excerpt | markdownify }}
+            </div>
+        </a>
+    {% endif %}
+    {% if page.is_post %}
+        <div class="post-nav">
+            <div class="post-next">
+            </div>
+        </div>
+    {% else %}
+        <a class="post-readmore" href="{{ post.url | absolute_url }}">Continue reading</a>
+    {% endif %}
+</div>

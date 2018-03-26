@@ -1,0 +1,25 @@
+// Define the space for each element.
+
+// @var number The number of space between each increment.
+$U-SPACE-INCREMENTS: 4;
+
+// @var number The maximum amount of space allowed.
+$U-SPACE-MAX: $U-SPACE-INCREMENTS * 32;
+
+// @var number The number of steps until the maximum is reached.
+$U-SPACE-STEPS: $U-SPACE-MAX / $U-SPACE-INCREMENTS;
+
+// Emits space utilities.
+//
+// @param $selector The name of the selector to use.
+// @rule  $rule     The rule to use.
+//
+// @output ...
+@mixin u-emit-space ($selector, $rule) {
+    @for $i from 0 through $U-SPACE-STEPS {
+        $space: $U-SPACE-INCREMENTS * $i;
+        #{$selector}#{$space} {
+            #{$rule}: #{$space}px !important;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+/**
+ * UI text utilities: These utilities are used on text that's used on the UI,
+ * not for text contact such as reading articles, etc.
+ */
+
+/* UI - Text size */
+
+.u-uiTextSizeHugest {
+    font-size: $ui-text-size-hugest !important;
+}
+
+.u-uiTextSizeHuger {
+    font-size: $ui-text-size-huger !important;
+}
+
+.u-uiTextSizeHuge {
+    font-size: $ui-text-size-huge !important;
+}
+
+.u-uiTextSizeLargest {
+    font-size: $ui-text-size-largest !important;
+}
+
+.u-uiTextSizeLarger {
+    font-size: $ui-text-size-larger !important;
+}
+
+.u-uiTextSizeLarge {
+    font-size: $ui-text-size-large !important;
+}
+
+.u-uiTextSizeBase {
+    font-size: $ui-text-size-base !important;
+}
+
+.u-uiTextSizeSmall {
+    font-size: $ui-text-size-small !important;
+}
+
+.u-uiTextSizeSmaller {
+    font-size: $ui-text-size-smaller !important;
+}
+
+.u-uiTextSizeSmallest {
+    font-size: $ui-text-size-smallest !important;
+}
+
+/* UI - Text Color */
+
+.u-uiTextColorBlack {
+    color: #000000 !important;
+}

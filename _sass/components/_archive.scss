@@ -1,0 +1,26 @@
+.archive {
+}
+.archive::after {
+    @include clearfix;
+}
+
+.archive-year {
+    font-size: 1.75em;
+    font-weight: 700;
+}
+
+.archive-year::after {
+    @include clearfix;
+}
+.archive-date {
+    float: left;
+    width: 100px;
+}
+
+.archive-date::after {
+    $middot-unicode: "\00b7";
+    content: $middot-unicode;
+    display: none; // hidefor now until we decide we need it
+}
+.archive-title {
+}

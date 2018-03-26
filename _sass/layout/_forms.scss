@@ -1,0 +1,36 @@
+/**
+ *------------------------------------------------------------------------------
+ * Basic form controls
+ *------------------------------------------------------------------------------
+ */
+
+.basic-form {
+    font-size: 1rem;
+}
+
+.basic-form label {
+    line-height: 135%;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.basic-form input {
+    margin-bottom: 1rem;
+}
+
+.basic-form textarea {
+    margin-bottom: 1rem;
+}
+
+.basic-form p {
+    line-height: 135%;
+    margin-bottom: 1rem;
+}
+
+.basic-form p + p {
+    margin-top: -.25rem;
+}
+
+.basic-form-group {
+    /* padding: 16px 0px; */
+}

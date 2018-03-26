@@ -1,0 +1,19 @@
+/**
+ * Let <body> and <html> occupy the entire screen.
+ */
+
+body, html {
+    /* overflow-x: hidden; /* why tho? */
+    min-height: 100%;
+}
+
+/**
+ * body
+ */
+
+body {
+    font-family: "Merriweather Sans", "Gentium Basic", "Open Sans", "IBM Plex Sans", "Nunito", "Source Sans Pro", "Lato", /*"Nunito", "Source Sans Pro",*/ sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}

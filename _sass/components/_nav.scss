@@ -1,0 +1,114 @@
+$nav-height: 64px;
+$nav-width: 270px;
+
+.nav {
+    z-index: 900;
+}
+
+.nav-inner {
+    margin: {
+        left: 16px;
+        right: 16px;
+    }
+}
+
+.nav::after {
+    @include clearfix;
+}
+
+.nav-brand {
+    float: left;
+}
+
+.nav-menu {
+    float: right;
+}
+
+.nav-link--elusive {
+    text-decoration: none;
+}
+
+.nav-items {
+    list-style-type: none;
+}
+
+.nav-items::after {
+    @include clearfix;
+}
+
+.nav-item {
+    height: $nav-height;
+    float: left;
+}
+
+.nav-logo, .nav-title, .nav-triggerLabel {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.nav-title{
+    font-family: "Rubik";
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-left: 12px;
+}
+
+.nav-trigger {
+    height: 100%;
+    padding: {
+        left: 200px;
+        right: 4px;
+    }
+}
+
+.nav-triggerLabel {
+    transform: rotate(90deg) translateX(-.5rem);
+    letter-spacing: 2px;
+    font-size: 1.05rem;
+    font-family: "Rubik";
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.nav-sidebar {
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    max-width: $nav-width;
+    transform: translateX($nav-width);
+    transition: transform .3s;
+    z-index: 900;
+}
+
+.nav-sidebarInner {
+    margin-top: $nav-height;
+    padding: {
+        bottom: 16px;
+        left: 54px;
+        right: 32px;
+    }
+}
+
+.nav-trigger:hover .nav-sidebar {
+    transform: translateX(0px);
+}
+
+.nav-list {
+    list-style-type: none;
+    text-align: right;
+    color: #888;
+    font-size: 1.25em;
+    font-weight: 300;
+}
+
+.nav-listItem {
+    text-transform: lowercase;
+    margin-bottom: .6em;
+}
