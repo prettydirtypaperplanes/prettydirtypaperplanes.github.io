@@ -25,12 +25,21 @@
                         <h4 class="nav-triggerLabel">|||</h4>
                         <div class="nav-sidebar">
                             <div class="nav-sidebarInner">
+								<h1 class="nav-sidebarTitle">Blog</h1>
                                 <ul class="nav-list">
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.baseurl | absolute_url }}">Home</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.baseurl }}{% link about.html %}">About</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.baseurl }}{% link colophon.html %}">Colophon</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.baseurl }}{% link styleguide.html %}">Styleguide</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.baseurl }}{% link archive.html %}">Archive</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}">Home</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link about.html %}">About</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link archive.html %}">Archive</a></li>
+                                </ul>								
+								<h1 class="nav-sidebarTitle">Category</h1>
+                                <ul class="nav-list">
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link about.html %}">Thoughts</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link archive.html %}">Designs</a></li>
+                                </ul>								
+								<h1 class="nav-sidebarTitle">Design</h1>
+                                <ul class="nav-list">
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link colophon.html %}">Colophon</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link styleguide.html %}">Styleguide</a></li>
                                 </ul>
                             </div>
                         </div>
