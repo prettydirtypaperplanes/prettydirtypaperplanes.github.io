@@ -1,24 +1,28 @@
----
-layout: default
----
-
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+    <div class="app">
+        <div class="app-nav">
+            {% include nav.html %}
+        </div>
+        <div class="app-main"> 
+            <div class="container">
+                <div class="canopy">
+                    <div class="canopy-inner">
+                        <div class="u-logo--highlightOnHover">
+                            <a class="canopy-link--elusive" href="{{ site.url | absolute_url }}">
+                                <div class="canopy-logo">
+                                    <div class="logo logo--center logo--140px logo--404"></div>
+                                </div>
+                            </a>
+                            <a class="canopy-title" href="{{ site.url | absolute_url }}">404</a>
+                        </div>
+                        <h3 class="canopy-description">Page could not be found.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
