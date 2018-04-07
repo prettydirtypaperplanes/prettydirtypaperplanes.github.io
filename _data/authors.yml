@@ -1,0 +1,25 @@
+# Author profiles
+
+# Format:
+# ```
+# - username: <choose a permanent username>
+#   first_name: <your first name>
+#   last_name: <your last name>
+#   bio: >
+#     <Write your bio here>
+#   email: <optional: your email address
+#   twitter: <optional: <twitter username>
+#   github: <optional: <github username>
+#   website: <optional: <your website url>
+#   accent_color: <optional: <hex color code>
+# ```
+
+
+- username: jesani
+  first_name: J&eacute; Sani
+  last_name: Gilbert
+  bio: >
+  twitter: eurekasfray
+  github: eurekasfray
+  website:
+  accent_color: ffaa30

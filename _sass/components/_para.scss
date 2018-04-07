@@ -1,0 +1,147 @@
+.para * {
+}
+
+
+// Note: `.para-a` mimics `.para a` for places where we want to display paragraph-style anchors.
+.para a, .para a:visited, .para-a a, .para-a a:visited {
+    color: #000;
+    box-shadow: inset 0px -1px 0px #2563F5;
+    text-decoration: none;
+}
+
+.para a:hover, .para-a a:hover {
+    color: #2563F5;
+}
+
+
+.para h1, .para h2, .para h3, .para h4, .para h5, .para h6 {
+    font-family: "Merriweather Sans", sans-serif;
+}
+
+.para h1 {
+    font-size: 1.25em;
+    font-weight: 800; // Extra bold
+    margin-top: 1.25rem;
+}
+
+// Push H1 away from from any previous element in order to show difference.
+.para * + h1 {
+    margin-top: 2.25rem;
+}
+
+.para h2 {
+    font-size: 1.05em;
+    font-weight: 800; // Extra bold
+    margin-top: 1.25rem;
+}
+
+.para h3 {
+    color: #000;
+    font-size: .8em;
+    font-size: .925em;
+    font-size: .9em;
+    font-size: .875em;
+    font-weight: 800; // Extra bold
+    text-transform: uppercase;
+    letter-spacing: .5pt;
+    margin-top: 1.25rem;
+    margin-bottom: .25rem !important; // Force smaller
+}
+
+// Let H4, H5, and H6 share the same style because we will rarely use H4 - H6.
+.para h4, .para h5, .para h6 {
+    color: #333;
+    font-size: 1em;
+    font-weight: 400; // Normal
+}
+
+// We set the margins for the headings here.
+// Pull the headings closer to the next element in order to show association.
+.para h1 + *, .para h2 + *, .para h3 + *, .para h4 + *, .para h5 + *, .para h6 + * {
+    margin-top: .6rem !important; // Override exisiting margins rules.
+}
+
+// We set margin for flow content here.
+.para p, .para .para-p, .para ul, .para ol, .para pre {
+    $space: 1.25rem;
+    margin: {
+        top: $space;
+        bottom: $space;
+    }
+}
+
+// Note: .para-p is used to mimic <p> in places where <p> cannot be used.
+.para p, .para .para-p {
+
+}
+
+.para a {
+    text-decoration: none;
+}
+
+.para ul, .para ol {
+    margin-left: 1.25rem;
+    margin-bottom: 1rem; // Push away any element after the ordered and unordered list.
+}
+
+.para li {
+    margin-bottom: 1rem;
+    padding-left: .4rem;
+}
+
+.para li p {
+    $size: .75rem;
+    margin: {
+        top: $size;
+        bottom: $size;
+    }
+}
+
+.para blockquote {
+    border-left: 1px solid #ccc;
+    padding-left: 1.75rem;
+}
+
+.para code.highlighter-rouge {
+    background-color: #EBEBEB;
+    color: #454545;
+    font-size: .95em;
+    padding: 2px;
+}
+
+.para code, .para pre {
+    font-size: .95em;
+    font-family: "Overpass Mono", monospace;
+}
+
+.para pre {
+    overflow-y: auto;
+}
+
+.para img {
+}
+
+.para em, .para i {
+    font-style: italic;
+}
+
+.para strong, .para b {
+    font-weight: 600; // Semi-bold
+}
+
+.para hr { }
+
+.para hr::before {
+    content: "...";
+    color: #ccc;
+    font-weight: 800; // Extra-bold
+    letter-spacing: 12pt;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 10%;
+    transform: translateY(-10%); // for perfect centering of the dots.
+}
+
+.para br { }

@@ -1,5 +1,8 @@
 $nav-height: 64px;
 $nav-width: 270px;
+$nav-margin: 72px * .25; // Percentage of.
+$nav-sidebar-left-margin: 54px;
+$nav-sidebar-right-margin: 32px;
 
 .nav {
     z-index: 900;
@@ -7,8 +10,8 @@ $nav-width: 270px;
 
 .nav-inner {
     margin: {
-        left: 16px;
-        right: 16px;
+        left: $nav-margin;
+        right: $nav-margin;
     }
 }
 
@@ -16,14 +19,17 @@ $nav-width: 270px;
     @include clearfix;
 }
 
+// Displays branding.
 .nav-brand {
     float: left;
 }
 
+// Displays mennu.
 .nav-menu {
     float: right;
 }
 
+// Remove underline decoration from any anchor
 .nav-link--elusive {
     text-decoration: none;
 }
@@ -41,6 +47,7 @@ $nav-width: 270px;
     float: left;
 }
 
+// Nav elements are veritcally centered here.
 .nav-logo, .nav-title, .nav-triggerLabel {
     position: relative;
     top: 50%;
@@ -50,28 +57,39 @@ $nav-width: 270px;
     transform: translateY(-50%);
 }
 
-.nav-title{
+.nav-title {
     font-family: "Rubik";
     text-transform: uppercase;
     font-weight: 900;
+    letter-spacing: 1px;
     margin-left: 12px;
 }
 
 .nav-trigger {
     height: 100%;
     padding: {
+        // Use the left padding to capture mouse hover before it reaches menu icon.
+        // This way, the menu will popout earlier than expected.
         left: 200px;
         right: 4px;
     }
 }
 
 .nav-triggerLabel {
-    transform: rotate(90deg) translateX(-.5rem);
+    transform: rotate(90deg) translateX(-.5em); // translateX is used to vertically center the rotated bars.
     letter-spacing: 2px;
     font-size: 1.05rem;
     font-family: "Rubik";
     font-weight: 900;
     cursor: pointer;
+}
+
+.nav-triggerLabel::before {
+    content: "|||";
+    letter-spacing: 2px;
+    font-size: 1.05rem;
+    font-family: "Rubik";
+    font-weight: 900;
 }
 
 .nav-sidebar {
@@ -85,30 +103,54 @@ $nav-width: 270px;
     transform: translateX($nav-width);
     transition: transform .3s;
     z-index: 900;
-}
-
-.nav-sidebarInner {
-    margin-top: $nav-height;
-    padding: {
-        bottom: 16px;
-        left: 54px;
-        right: 32px;
-    }
+    overflow-y: auto;
 }
 
 .nav-trigger:hover .nav-sidebar {
     transform: translateX(0px);
 }
 
+.nav-sidebarInner {
+    margin-top: $nav-height;
+    padding: {
+        bottom: 16px;
+        left: $nav-sidebar-left-margin;
+        right: $nav-sidebar-right-margin;
+    }
+}
+
 .nav-list {
     list-style-type: none;
     text-align: right;
-    color: #888;
-    font-size: 1.25em;
-    font-weight: 300;
+    margin-bottom: 2em;
+}
+
+.nav-listHeading {
+    text-align: right;
+    text-transform: uppercase;
+    font-family: "Rubik";
+    font-size: .925em;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 1em;
 }
 
 .nav-listItem {
+    font-size: 1.25em;
+    font-weight: 300;
     text-transform: lowercase;
-    margin-bottom: .6em;
+    margin-bottom: .8em;
+    color: #888;
+}
+
+.nav-listLink {
+    text-decoration: none;
+}
+
+.nav-listLink:hover {
+    color: #444;
+}
+
+.nav-listLink--external::after {
+    content: "\21B5";
 }

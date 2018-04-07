@@ -1,41 +1,173 @@
 {% comment %}
-    This include file serves to reduce duplication. Any changes to this file
-    will reflect in the places.
+    This include file is used to display a post.
 
-    This include file assumes that the variable `post` is set and is a post
-    from `site.posts`. If the page is a post, that we display the post content.
-    However, if the page is a post from `site.posts` then display the post's
-    excerpt  and the 'read more' link.
+    This primary existence of this include file serves to reduce duplication.
+    Any changes to this file will reflect within its dependencies.
+
+    @param article (object): The post to display. Assumes that $article has common properties such as `title`, `content`, `url`, etc.
+    @param show_excerpt (true|false): Decide whether to display the full post or just an excerpt.
 {% endcomment%}
 
-{% if page.is_post %}
-    {% assign article = page %}
+{% comment %}
+    Process the param `article`:
+    Store the target object in a common name, `article`.
+{% endcomment %}
+{% if include.article %}
+    {% assign article = include.article %}
+{% endif %}
+
+{% comment %}
+    Process the param `show_excerpt`:
+    Accept either 'true' or 'false' valid values for `excerpt`. Otherwise, set it as false.
+{% endcomment %}
+{% if include.excerpt == true or include.excerpt == false %}
+    {% assign show_excerpt = include.excerpt %}
 {% else %}
-    {% assign article = post %}
+    {% assign show_excerpt == false %}
 {% endif %}
 
 <div class="post">
     <div class="post-meta">
-        <time class="post-date">{{ article.date | date: "%b %d, %Y" }}</time>
-        <h1 class="post-heading"><a class="post-link" href="{{ post.url | absolute_url }}">{{ article.title }}</a></h1>
+        {% comment %}
+            The format for the `datetime` attribute is `YYYY-MM-DDTHH:MM:SS.DD±HH:MM`
+            For more info, visit https://www.w3.org/TR/html51/infrastructure.html#dates-and-times
+        {% endcomment %}
+        {% if article.date %}
+            <time class="post-date" datetime="{{ article.date | date: "%Y-%m-%dT%H:%M:%S" }}{{ article.date | date: "%z" | slice: 0, 3 }}:{{ article.date | date: "%z" | slice: 3, 4 }}">{{ article.date | date: "%B %d, %Y" }}</time>
+        {% endif %}
+        <h1 class="post-heading"><a class="post-link" href="{{ article.url | absolute_url }}">{{ article.title | smartify }}</a></h1>
+        {% if article.subtitle %}
+            <h3 class="post-subtitle">{{ article.subtitle | smartify }}</h3>
+        {% endif %}
+
     </div>
-    {% if page.is_post %}
+    {% if show_excerpt == false %}
         <div class="post-content">
-            {{ content }}
+            <div class="para">
+                {{ content | smartify }}
+            </div>
         </div>
+        {% if article.categories %}
+            <ul class="post-tags">
+                {% for category in article.categories %}
+                    <li class="post-tag">{{ category }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if article.authors or article.author %}
+            <div class="post-authors">
+                <h1 class="post-authorsHeading">Written by</h1>
+                {% comment %} Accept author list from `article.authors` (plural) and `article.author` (singular) {% endcomment %}
+                {% if article.author %}
+                    {% assign authors = article.author %}
+                {% else %}
+                    {% assign authors = article.authors %}
+                {% endif %}
+
+                {% for author in authors %}
+                    <dl class="post-author">
+                        {% assign post_author = site.data.authors | where: "username", author | first %}
+                        <dt class="post-authorIcon" {% if post_author.accent_color %}style="background-color: #{{ post_author.accent_color }} !important;"{% endif %}></dt>
+                        <dt class="post-authorName">{{ post_author.first_name | smartify }} {{ post_author.last_name | smartify }}</dt>
+                        <dl class="post-authorBio">{{ post_author.bio | smartify }}</dl>
+                    </dl>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if article.previous or article.next %}
+            <div class="post-nav">
+                {% if article.previous %}
+                    <div class="post-prev">
+                        <h3 class="post-navLabel">Previous</h3>
+                        <p class="para-a">
+                            <a class="post-navLink" href="{{ article.previous.url | absolute_url }}">{{ article.previous.title | smartify }}</a>
+                        </p>
+                    </div>
+                {% endif %}
+                {% if article.next %}
+                    <div class="post-next">
+                        <h3 class="post-navLabel">Next</h3>
+                        <p class="para-a">
+                            <a class="post-navLink" href="{{ article.next.url | absolute_url }}">{{ article.next.title | smartify }}</a>
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
     {% else %}
-        <a class="post-link" href="{{ post.url | absolute_url }}">
+        <a class="post-link" href="{{ article.url | absolute_url }}">
             <div class="post-content">
-                {{ article.excerpt | markdownify }}
+                <div class="para">
+                    {% comment %}
+                        Re-format the markdown excerpt to remove certain formatting (assuming we are using kramdown, GitHub-flavored markdown).
+                        The following are preserved:
+                          - Span formatting: Keep code formatting, and emphasis formatting like <em> and <strong> in order for them to be displayed in the excerpt.
+                          - Line break <br>: This is important to the meaning of content.
+                        The following are left to be stripped:
+                          - Anchors: Because the post content is already wrapped in an anchor and anchors cannot be nested, swap the anchors with spans.
+                          - Headings: Because headings are bold, large, and are in your face, soften the headings into paragraphs by removing their tags, just leaving text.
+                          - Horizontal rules <hr>: The horizontal rule is not necessary in an excerpt.
+                          - Images: Same as <hr>.
+                          - All other HTML.
+                    {% endcomment %}
+                    <div class="para-p">
+                        {% if article.excerpt %}
+                            {% comment %}
+                                - We make special consideration for preserving <span>, <pre>, and <figure>
+                                  for the sake of keeping Rouge's highlighted code blocks.
+                            {% endcomment %}
+                            {%- assign preprocessed_excerpt = article.excerpt
+                               | replace:  '<em>'          , '__em__'
+                               | replace:  '</em>'         , '__/em__'
+                               | replace:  '<strong>'      , '__strong__'
+                               | replace:  '</strong>'     , '__/strong__'
+                               | replace:  '<code>'        , '__code__'
+                               | replace:  '<code class'   , '__code_with_class__'
+                               | replace:  '</code>'       , '__/code__'
+                               | replace:  '<br />'        , '__br__'
+                               | replace:  '<pre>'         , '__pre__'
+                               | replace:  '</pre>'        , '__/pre__'
+                               | replace:  '<span>'        , '__span__'
+                               | replace:  '<span class'   , '__span_with_class__'
+                               | replace:  '</span>'       , '__/span__'
+                               | replace:  '<figure class' , '__figure_with_class__'
+                               | replace:  '</figure>'     , '__/figure__'
+                            -%}
+
+                            {% comment %} Strip the unpreserved HTML from the excerpt. {% endcomment %}
+                            {%- assign html_stripped_excerpt = preprocessed_excerpt | strip_html -%}
+
+                            {% comment %} Unpack the preserved tags back to HTML. {% endcomment %}
+                            {%- assign cleaned_excerpt = html_stripped_excerpt
+                               | replace:  '__em__'                , '<em>'
+                               | replace:  '__/em__'               , '</em>'
+                               | replace:  '__strong__'            , '<strong>'
+                               | replace:  '__/strong__'           , '</strong>'
+                               | replace:  '__code__'              , '<code>'
+                               | replace:  '__code_with_class__'   , '<code class'
+                               | replace:  '__/code__'             , '</code>'
+                               | replace:  '__br__'                , '<br />'
+                               | replace:  '__pre__'               , '<pre>'
+                               | replace:  '__/pre__'              , '</pre>'
+                               | replace:  '__span__'              , '<span>'
+                               | replace:  '__span_with_class__'   , '<span class'
+                               | replace:  '__/span__'             , '</span>'
+                               | replace:  '__figure_with_class__' , '<figure class'
+                               | replace:  '__/figure__'           , '</figure>'
+                            -%}
+
+                            {% comment %}
+                                Display the cleaned excerpt (with a second markdownify for excerpts that were
+                                defined in the frontmatter of some documents).
+                            {% endcomment %}
+                            {{- cleaned_excerpt | markdownify | smartify -}}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </a>
-    {% endif %}
-    {% if page.is_post %}
-        <div class="post-nav">
-            <div class="post-next">
-            </div>
-        </div>
-    {% else %}
-        <a class="post-readmore" href="{{ post.url | absolute_url }}">Continue reading</a>
+        <p class="para-a">
+            <a class="post-readmore" href="{{ article.url | absolute_url }}">Continue Reading&hellip;</a>
+        </p>
     {% endif %}
 </div>

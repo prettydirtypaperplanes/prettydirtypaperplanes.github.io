@@ -1,13 +1,17 @@
+{% comment %}
+    This include file contains the global nav for the website.
+{% endcomment %}
+
 <div class="nav">
     <div class="nav-inner">
         <div class="nav-brand">
-            {% if page.is_landing == true %}
-                {% comment %} Do nothing {% endcomment %}
-            {% else %}
+            {% comment %} Don't display the branding (logo+title) on the landing page. {% endcomment %}
+            {% if page.is_landing == nil %}
                 <a class="nav-link--elusive" href="{{ site.url | absolute_url }}">
                     <ul class="nav-items u-logo--highlightOnHover">
                         <li class="nav-item">
                             <div class="nav-logo">
+                                {% comment %} On the 404 page, display the 404-flavoured logo. {% endcomment %}
                                 <div class="logo {% if page.is_404 %}logo--404{% endif %}"></div>
                             </div>
                         </li>
@@ -22,24 +26,36 @@
             <ul class="nav-items">
                 <li class="nav-item">
                     <div class="nav-trigger">
-                        <h4 class="nav-triggerLabel">|||</h4>
+                        <div class="nav-triggerLabel"></div>
                         <div class="nav-sidebar">
                             <div class="nav-sidebarInner">
-								<h1 class="nav-sidebarTitle">Blog</h1>
                                 <ul class="nav-list">
+                                    <li class="nav-listHeading">Publication</li>
                                     <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}">Home</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link about.html %}">About</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link archive.html %}">Archive</a></li>
-                                </ul>								
-								<h1 class="nav-sidebarTitle">Category</h1>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link pages/about.md %}">About</a></li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link pages/archive.html %}">Archive</a></li>
+                                </ul>
+                                {% comment %}
+                                    <!-- The following was commented out because we're not ready for displaying categories yet. -->
+                                    <ul class="nav-list">
+                                        <li class="nav-listHeading">Categories</li>
+                                        {% assign category_count = 1 %}
+                                        {% for category in site.categories %}
+                                            <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}">{{ category | first}}</a></li>
+                                            {% if category_count == '5' %}
+                                                <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}">all &rarr;</a></li>
+                                                {% break %}
+                                            {% else %}
+                                                {% capture category_new_count %}{{ category_count | plus: 1 }}{% endcapture %}
+                                                {% assign category_count = category_new_count %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endcomment %}
                                 <ul class="nav-list">
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link about.html %}">Thoughts</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link archive.html %}">Designs</a></li>
-                                </ul>								
-								<h1 class="nav-sidebarTitle">Design</h1>
-                                <ul class="nav-list">
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link colophon.html %}">Colophon</a></li>
-                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link styleguide.html %}">Styleguide</a></li>
+                                    <li class="nav-listHeading">Inside</li>
+                                    <li class="nav-listItem"><a class="nav-listLink" href="{{ site.url | absolute_url }}{% link pages/colophon.md %}">Colophon</a></li>
+                                    <li class="nav-listItem nav-listLink--external"><a class="nav-listLink" href="https://github.com/{{ site.github_username}}/{{ site.github_username}}.github.io">GitHub</a></li>
                                 </ul>
                             </div>
                         </div>

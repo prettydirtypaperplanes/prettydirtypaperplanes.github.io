@@ -1,3 +1,27 @@
 .posts {
+}
 
+.posts-post, .posts-empty {
+    border-top: 1px solid #eee;
+}
+
+.posts-post {
+    padding: {
+        top: 4rem;
+        bottom: 4rem;
+    }
+}
+
+.posts-section {
+    padding-bottom: .25em;
+    font-size: .9em;
+    color: #2563F5;
+    text-transform: uppercase;
+}
+
+.posts-empty {
+    padding: {
+        top: 6rem;
+        bottom: 10rem;
+    }
 }

@@ -5,18 +5,19 @@
     width: $size;
     @include border-radius($size * .05); // Border radius is 5% of the box size.
     position: relative;
+    @include highlight-ghost(.4, .8s);
+    /*
     opacity: .4;
     filter: alpha(opacity=40); // for IE8 and earlier
     $time: .8s;
     -webkit-transition: opacity $time;
     -moz-transition: opacity $time;
     -o-transition: opacity $time;
-    transition: opacity $time;
+    transition: opacity $time; */
 }
 
 .logo:hover, .u-logo--highlightOnHover:hover .logo {
-    opacity: 1;
-    filter: alpha(opacity=100); // for IE8 and earlier
+    @include highlight-hover(1);
 }
 
 .logo::before {

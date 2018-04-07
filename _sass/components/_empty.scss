@@ -1,0 +1,36 @@
+.empty {
+    text-align: center;
+}
+
+.empty-icon {
+    max-width: 140px;
+    display: block;
+    margin: {
+        left: auto;
+        right: auto;
+    }
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+.empty-heading {
+    font-family: "Rubik";
+    font-size: 1.75em;
+    font-size: 3em;
+    font-weight: 300;
+    color: #222;
+    background: -webkit-linear-gradient(#2563F5, #602CDB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @include highlight-ghost(.6, .8s);
+    margin-top: .5em;
+}
+
+.empty-heading:hover {
+    @include highlight-hover(.9);
+}
+
+.empty-text {
+    margin-top: 1em;
+    color: #888;
+}

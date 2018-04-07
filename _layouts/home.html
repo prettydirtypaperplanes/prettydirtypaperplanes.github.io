@@ -6,7 +6,7 @@
         <div class="app-nav">
             {% include nav.html %}
         </div>
-        <div class="app-main"> 
+        <div class="app-main">
             <div class="container">
                 <div class="canopy">
                     <div class="canopy-inner">
@@ -18,15 +18,27 @@
                             </a>
                             <a class="canopy-title" href="{{ site.url | absolute_url }}">{{ site.title }}</a>
                         </div>
-                        <h4 class="canopy-byline">By {{ site.byline }}</h4>
-                        <h3 class="canopy-description">{{ site.description }}</h3>
+                        {% if site.byline %}
+                            <h4 class="canopy-byline">By {{ site.byline }}</h4>
+                        {% endif %}
+                        <h3 class="canopy-description">{{ site.description | smartify }}</h3>
                     </div>
                 </div>
-                <div class="posts">
+            </div>
+            <div class="posts">
+                {% if site.posts[0] %}
                     {% for post in site.posts %}
-                        {% include post.html %}
+                        <div class="posts-post">
+                            <div class="container">
+                                {% include post.html article=post excerpt=true %}
+                            </div>
+                        </div>
                     {% endfor %}
-                </div>
+                {% else %}
+                    <div class="posts-empty">
+                        {% include nothing-to-display.html %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

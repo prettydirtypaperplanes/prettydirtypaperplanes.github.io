@@ -1,7 +1,23 @@
 .archive {
 }
+
 .archive::after {
     @include clearfix;
+}
+
+// Displays a list of all archives
+.archive-enumeration {
+
+}
+
+// Displays report to let user know there are no posts available yet.
+.archive-empty {
+    font-size: 1rem;
+    $size: 8em;
+    padding: {
+        top: $size;
+        bottom: $size;
+    }
 }
 
 .archive-year {
@@ -13,6 +29,7 @@
     @include clearfix;
 }
 .archive-date {
+    color: #aaa;
     float: left;
     width: 100px;
 }
@@ -20,7 +37,7 @@
 .archive-date::after {
     $middot-unicode: "\00b7";
     content: $middot-unicode;
-    display: none; // hidefor now until we decide we need it
+    display: none; // Hide for now until we decide we need it
 }
 .archive-title {
 }

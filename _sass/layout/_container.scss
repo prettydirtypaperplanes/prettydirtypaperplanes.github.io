@@ -10,7 +10,8 @@
 // the content away from the edges of the screen.
 .container {
     max-width: 900px;
-    max-width: 660px; // 768px = 960px - 96px - 96px
+    max-width: 660px; // Aim for a width that allows for a width of 60-80 characters
+    max-width: 65ch; // Aim for a width that allows for a width of 60-80 characters
     margin: {
         left: auto;
         right: auto;

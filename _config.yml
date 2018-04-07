@@ -14,15 +14,16 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Pretty, Dirty Paper Planes
-byline: Ghost
+byline: false
 email: your-email@example.com
 description: > # this means to ignore newlines until "baseurl:"
-  A blog for openly sharing our design behind the build of a new e-commerce
-  webapp in Antigua, in a brave vulnerable practice of designing in the open.
+  We write about the design and build of Project Gem, an e-commerce webapp in Antigua.
+  We openly share our process in a practice of designing
+  in the open.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
-github_username: jekyll
+github_username: prettydirtypaperplanes
 permalink: /:title
 
 # Build settings
@@ -57,16 +58,3 @@ defaults:
       type: posts   # limit to posts
     values:
       is_post: true # automatically set is_post=true for all posts
-
-# Author profiles
-author: Je Sani Gilbert
-authors:
-  - jesani_gilbert:
-    first_name: J&acute; Sani
-    last_name: Gilbert
-    bio: Artist. Programmer. Maker. Dreamer.
-    email:
-    twitter: eurekfray
-    github: eurekasfray
-    website:
-    accent_color: ff0000

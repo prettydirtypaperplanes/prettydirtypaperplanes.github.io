@@ -36,3 +36,21 @@
     -moz-border-radius: $value;
     -webkit-border-radius: $value;
 }
+
+// Let's you ghost an element.
+@mixin highlight-ghost($opacity, $time) {
+    opacity: $opacity;
+    $alpha: $opacity * 100;
+    filter: alpha(opacity = $alpha); // for IE8 and earlier
+    -webkit-transition: opacity $time;
+    -moz-transition: opacity $time;
+    -o-transition: opacity $time;
+    transition: opacity $time;
+}
+
+// Let the ghosted item become highlighted on hover.
+@mixin highlight-hover($opacity) {
+    opacity: $opacity;
+    $alpha: $opacity * 100;
+    filter: alpha(opacity = $alpha); // for IE8 and earlier
+}
