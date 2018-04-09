@@ -1,26 +1,33 @@
 .para * {
 }
 
+.para * {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
 
 // Note: `.para-a` mimics `.para a` for places where we want to display paragraph-style anchors.
-.para a, .para a:visited, .para-a a, .para-a a:visited {
-    color: #000;
-    box-shadow: inset 0px -1px 0px #2563F5;
+.para a, .para-a a{
+    color: $color-text-link;
+    box-shadow: inset 0px -1px 0px $color-text-link-decoration;
     text-decoration: none;
 }
 
 .para a:hover, .para-a a:hover {
-    color: #2563F5;
+    color: $color-text-link-hover;
 }
 
+.para a:visited, .para-a a:visited {
+    color: $color-text-link-visited;
+}
 
 .para h1, .para h2, .para h3, .para h4, .para h5, .para h6 {
-    font-family: "Merriweather Sans", sans-serif;
+    font-family: $font-family-heading;
 }
 
 .para h1 {
-    font-size: 1.25em;
-    font-weight: 800; // Extra bold
+    font-size: $font-size-large;
+    font-weight: $font-weight-bolder;
     margin-top: 1.25rem;
 }
 
@@ -30,29 +37,26 @@
 }
 
 .para h2 {
-    font-size: 1.05em;
-    font-weight: 800; // Extra bold
+    font-size: $font-size-regular;
+    font-weight: $font-weight-bolder;
     margin-top: 1.25rem;
 }
 
 .para h3 {
-    color: #000;
-    font-size: .8em;
-    font-size: .925em;
-    font-size: .9em;
-    font-size: .875em;
-    font-weight: 800; // Extra bold
+    color: $color-text-heading;
+    font-size: $font-size-smallest;
+    font-weight: $font-weight-bolder;
     text-transform: uppercase;
     letter-spacing: .5pt;
     margin-top: 1.25rem;
-    margin-bottom: .25rem !important; // Force smaller
+    margin-bottom: .25rem !important;
 }
 
 // Let H4, H5, and H6 share the same style because we will rarely use H4 - H6.
 .para h4, .para h5, .para h6 {
-    color: #333;
-    font-size: 1em;
-    font-weight: 400; // Normal
+    color: $color-text-heading;
+    font-size: $font-size-smallest;
+    font-weight: $font-weight-bolder;
 }
 
 // We set the margins for the headings here.
@@ -64,6 +68,7 @@
 // We set margin for flow content here.
 .para p, .para .para-p, .para ul, .para ol, .para pre {
     $space: 1.25rem;
+    $space: 1.75rem;
     margin: {
         top: $space;
         bottom: $space;
@@ -91,6 +96,7 @@
 
 .para li p {
     $size: .75rem;
+    $size: 1.25rem;
     margin: {
         top: $size;
         bottom: $size;
@@ -98,20 +104,19 @@
 }
 
 .para blockquote {
-    border-left: 1px solid #ccc;
+    border-left: .5rem solid $color-border;
     padding-left: 1.75rem;
 }
 
 .para code.highlighter-rouge {
-    background-color: #EBEBEB;
-    color: #454545;
-    font-size: .95em;
+    color: $color-text-code;
+    font-size: $font-size-regular;
     padding: 2px;
 }
 
 .para code, .para pre {
-    font-size: .95em;
-    font-family: "Overpass Mono", monospace;
+    font-size: $font-size-regular;
+    font-family: $font-family-monospace;
 }
 
 .para pre {
@@ -126,16 +131,20 @@
 }
 
 .para strong, .para b {
-    font-weight: 600; // Semi-bold
+    font-weight: $font-weight-bold;
+}
+
+.para del {
+
 }
 
 .para hr { }
 
 .para hr::before {
-    content: "...";
-    color: #ccc;
-    font-weight: 800; // Extra-bold
-    letter-spacing: 12pt;
+    content: "___";
+    color: $color-text-weaker;
+    font-weight: $font-weight-bolder;
+    letter-spacing: 1em; // Control space between concatenated underscores.
     text-align: center;
     margin: 0 auto;
     display: block;

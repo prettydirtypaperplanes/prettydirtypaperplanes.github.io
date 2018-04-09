@@ -1,3 +1,3 @@
 # The downloads folder
 
-This folder keeps files for downloadables.
+This folder is used to keep downloadables.

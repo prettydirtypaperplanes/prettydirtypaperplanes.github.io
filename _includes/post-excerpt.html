@@ -1,0 +1,78 @@
+{% comment %}
+    Post excerpt component.
+
+    @param source (object): The post to display.  Assumes that $source has common properties such as `title`, `content`, `url`, etc.
+{% endcomment %}
+
+<a class="post-link" href="{{ include.source.url | absolute_url }}">
+    <div class="post-content">
+        <div class="para">
+            {% comment %}
+                Re-format the markdown excerpt to remove certain formatting (assuming we are using kramdown, GitHub-flavored markdown).
+                The following are preserved:
+                  - Span formatting: Keep code formatting, and emphasis formatting like <em> and <strong> in order for them to be displayed in the excerpt.
+                  - Line break <br>: This is important to the meaning of content.
+                The following are left to be stripped:
+                  - Anchors: Because the post content is already wrapped in an anchor and anchors cannot be nested, swap the anchors with spans.
+                  - Headings: Because headings are bold, large, and are in your face, soften the headings into paragraphs by removing their tags, just leaving text.
+                  - Horizontal rules <hr>: The horizontal rule is not necessary in an excerpt.
+                  - Images: Same as <hr>.
+                  - All other HTML.
+            {% endcomment %}
+            <div class="para-p">
+                {% if include.source.excerpt %}
+                    {% comment %}
+                        - We make special consideration for preserving <span>, <pre>, and <figure>
+                          for the sake of keeping Rouge's highlighted code blocks.
+                    {% endcomment %}
+                    {%- assign preprocessed_excerpt = include.source.excerpt
+                       | replace:  '<em>'          , '__em__'
+                       | replace:  '</em>'         , '__/em__'
+                       | replace:  '<strong>'      , '__strong__'
+                       | replace:  '</strong>'     , '__/strong__'
+                       | replace:  '<code>'        , '__code__'
+                       | replace:  '<code class'   , '__code_with_class__'
+                       | replace:  '</code>'       , '__/code__'
+                       | replace:  '<br />'        , '__br__'
+                       | replace:  '<pre>'         , '__pre__'
+                       | replace:  '</pre>'        , '__/pre__'
+                       | replace:  '<span>'        , '__span__'
+                       | replace:  '<span class'   , '__span_with_class__'
+                       | replace:  '</span>'       , '__/span__'
+                       | replace:  '<figure class' , '__figure_with_class__'
+                       | replace:  '</figure>'     , '__/figure__'
+                    -%}
+
+                    {% comment %} Strip the unpreserved HTML from the excerpt. {% endcomment %}
+                    {%- assign html_stripped_excerpt = preprocessed_excerpt | strip_html -%}
+
+                    {% comment %} Unpack the preserved tags back to HTML. {% endcomment %}
+                    {%- assign cleaned_excerpt = html_stripped_excerpt
+                       | replace:  '__em__'                , '<em>'
+                       | replace:  '__/em__'               , '</em>'
+                       | replace:  '__strong__'            , '<strong>'
+                       | replace:  '__/strong__'           , '</strong>'
+                       | replace:  '__code__'              , '<code>'
+                       | replace:  '__code_with_class__'   , '<code class'
+                       | replace:  '__/code__'             , '</code>'
+                       | replace:  '__br__'                , '<br />'
+                       | replace:  '__pre__'               , '<pre>'
+                       | replace:  '__/pre__'              , '</pre>'
+                       | replace:  '__span__'              , '<span>'
+                       | replace:  '__span_with_class__'   , '<span class'
+                       | replace:  '__/span__'             , '</span>'
+                       | replace:  '__figure_with_class__' , '<figure class'
+                       | replace:  '__/figure__'           , '</figure>'
+                    -%}
+
+                    {% comment %}
+                        Display the cleaned excerpt (with a second markdownify for excerpts that were
+                        defined in the frontmatter of some documents).
+                    {% endcomment %}
+                    {{- cleaned_excerpt | markdownify | smartify -}}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</a>
+<a class="post-readmore" href="{{ include.source.url | absolute_url }}">Continue Reading&hellip;</a>

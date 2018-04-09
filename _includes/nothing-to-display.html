@@ -2,10 +2,13 @@
     This include file reports to the user that their are no posts to display.
 {% endcomment %}
 
-<div class="empty">
-    <div class="container">
-        <img class="empty-icon" src="{% link assets/icons/PaperPlane_DDara.svg %}">
-        <h1 class="empty-heading">Nothing to show.</h1>
-        <p class="empty-text">We haven't posted anything yet. Check back later to see new posts.</p>
+{% capture _markdown %}
+We haven't posted anything yet. Check back later to see new posts.
+{% endcapture %}
+{% assign _markdown = _markdown | markdownify %}
+
+<div class="post">
+    {% include post-meta.html title="Nothing to show" %}
+    {% include post-full.html content=_markdown %}
     </div>
 </div>

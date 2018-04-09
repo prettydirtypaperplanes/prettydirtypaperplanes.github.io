@@ -1,58 +1,28 @@
 .canopy {
-    text-align: center;
 }
 
 .canopy-inner {
-    padding: {
-        top: 120px;
-        bottom: 120px;
-    }
+    padding-bottom: 4rem;
+}
+
+.canopy a {
+    color: $color-text-heading-invert !important;
 }
 
 .canopy-link--elusive {
     text-decoration: none;
 }
 
-.canopy-logo {
-    margin: {
-        left: auto;
-        right: auto;
-        bottom: .5em;
-    }
-}
-
 .canopy-title {
-    font-family: "Rubik";
-    font-weight: 700;
-    font-size: 1.85em;
-    text-transform: uppercase;
-    width: 600px;
-    margin-bottom: .25em;
+    color: $color-text-heading-invert;
+    font-weight: $font-weight-bolder;
+    font-size: $font-size-largest;
     text-decoration: none;
-}
-
-.canopy-byline {
-    color: #666;
-    font-family: "Rubik";
-    font-weight: 700;
-    font-size: .9em;
-    text-transform: uppercase;
-    width: 500px;
-    margin: {
-        top: .25em;
-        bottom: .25em;
-        left: auto;
-        right: auto;
-    }
+    margin-bottom: .25em;
 }
 
 .canopy-description {
-    width: 500px;
-    color: #888;
-    font-size: 1.225em;
-    line-height: 140%;
-    margin: {
-        left: auto;
-        right: auto;
-    }
+    color: $color-text-invert;
+    font-size: $font-size-regular;
+    line-height: 175%;
 }

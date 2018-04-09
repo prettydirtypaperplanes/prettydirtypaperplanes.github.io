@@ -1,0 +1,36 @@
+{% comment %}
+    Full post component.
+
+    @param source (object): The post to display.  Assumes that $source has common properties such as `title`, `content`, `url`, etc.
+    @param content (string): (Optional) The content to display.
+{% endcomment %}
+
+<div class="post-content">
+    <div class="para">
+        {% comment %} If defined, display the custom content provided via the include parameter `content`. Otherwise, display the content of the current page. {% endcomment }%}
+        {% if include.content %}
+            {{ include.content | smartify }}
+        {% else %}
+            {{ content | smartify }}
+        {% endif %}
+    </div>
+</div>
+{% comment %} Avoid displaying the post navigation if custom content was displayed. {% endcomment %}
+{% if include.content == nil %}
+    {% if include.source.previous or include.source.next %}
+        <div class="post-nav">
+            {% if include.source.previous %}
+                <div class="post-prev">
+                    <h3 class="post-navLabel">Previous</h3>
+                    <a class="post-navLink" href="{{ include.source.previous.url | absolute_url }}">{{ include.source.previous.title | smartify }}</a>
+                </div>
+            {% endif %}
+            {% if include.source.next %}
+                <div class="post-next">
+                    <h3 class="post-navLabel">Next</h3>
+                    <a class="post-navLink" href="{{ include.source.next.url | absolute_url }}">{{ include.source.next.title | smartify }}</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

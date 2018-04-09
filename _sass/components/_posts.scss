@@ -1,27 +1,19 @@
+$posts-post--padding: 4rem;
+
 .posts {
 }
 
-.posts-post, .posts-empty {
-    border-top: 1px solid #eee;
+.posts-post {
+    //border-top: 1px solid #eee;
 }
 
 .posts-post {
     padding: {
-        top: 4rem;
-        bottom: 4rem;
+        top: $posts-post--padding;
+        bottom: $posts-post--padding;
     }
 }
 
-.posts-section {
-    padding-bottom: .25em;
-    font-size: .9em;
-    color: #2563F5;
-    text-transform: uppercase;
-}
-
-.posts-empty {
-    padding: {
-        top: 6rem;
-        bottom: 10rem;
-    }
+.posts-post:first-of-type {
+    padding-top: $posts-post--padding * 2;
 }

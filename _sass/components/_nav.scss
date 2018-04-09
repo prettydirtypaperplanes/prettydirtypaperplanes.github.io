@@ -1,156 +1,70 @@
-$nav-height: 64px;
-$nav-width: 270px;
-$nav-margin: 72px * .25; // Percentage of.
-$nav-sidebar-left-margin: 54px;
-$nav-sidebar-right-margin: 32px;
+$nav--height: 72px;
 
 .nav {
-    z-index: 900;
-}
-
-.nav-inner {
-    margin: {
-        left: $nav-margin;
-        right: $nav-margin;
-    }
+    color: $color-text-invert;
+    padding-bottom: 8rem;
 }
 
 .nav::after {
     @include clearfix;
 }
 
-// Displays branding.
+.nav-inner { }
+
+.nav-navigation, .nav-brand {
+    font-size: $font-size-smaller;
+    height: $nav--height;
+    line-height: $nav--height;
+    list-style-type: none;
+}
+
+// Used to display branding elements.
 .nav-brand {
+    font-family: $font-family-text;
     float: left;
 }
 
-// Displays mennu.
-.nav-menu {
+.nav-brand > li {
+    float: left;
+}
+
+// Displays navigation elements.
+.nav-navigation {
+    font-family: $font-family-text;
     float: right;
 }
 
-// Remove underline decoration from any anchor
-.nav-link--elusive {
-    text-decoration: none;
+// Float the nav items.
+.nav-navigation > li {
+    float: left;
+    margin-left: 1.25rem;
 }
 
-.nav-items {
-    list-style-type: none;
+.nav-navigation > li:first-of-type {
+    margin-left: 0rem;
 }
 
-.nav-items::after {
+// Clear the floats.
+.nav-brand::after, .nav-navigation::after {
     @include clearfix;
 }
 
-.nav-item {
-    height: $nav-height;
-    float: left;
-}
-
-// Nav elements are veritcally centered here.
-.nav-logo, .nav-title, .nav-triggerLabel {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.nav-title {
-    font-family: "Rubik";
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 1px;
-    margin-left: 12px;
-}
-
-.nav-trigger {
-    height: 100%;
-    padding: {
-        // Use the left padding to capture mouse hover before it reaches menu icon.
-        // This way, the menu will popout earlier than expected.
-        left: 200px;
-        right: 4px;
-    }
-}
-
-.nav-triggerLabel {
-    transform: rotate(90deg) translateX(-.5em); // translateX is used to vertically center the rotated bars.
-    letter-spacing: 2px;
-    font-size: 1.05rem;
-    font-family: "Rubik";
-    font-weight: 900;
-    cursor: pointer;
-}
-
-.nav-triggerLabel::before {
-    content: "|||";
-    letter-spacing: 2px;
-    font-size: 1.05rem;
-    font-family: "Rubik";
-    font-weight: 900;
-}
-
-.nav-sidebar {
-    background-color: #fff;
-    border-left: 1px solid #ccc;
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    max-width: $nav-width;
-    transform: translateX($nav-width);
-    transition: transform .3s;
-    z-index: 900;
-    overflow-y: auto;
-}
-
-.nav-trigger:hover .nav-sidebar {
-    transform: translateX(0px);
-}
-
-.nav-sidebarInner {
-    margin-top: $nav-height;
-    padding: {
-        bottom: 16px;
-        left: $nav-sidebar-left-margin;
-        right: $nav-sidebar-right-margin;
-    }
-}
-
-.nav-list {
-    list-style-type: none;
-    text-align: right;
-    margin-bottom: 2em;
-}
-
-.nav-listHeading {
-    text-align: right;
-    text-transform: uppercase;
-    font-family: "Rubik";
-    font-size: .925em;
-    font-weight: 900;
-    color: #111;
-    margin-bottom: 1em;
-}
-
-.nav-listItem {
-    font-size: 1.25em;
-    font-weight: 300;
-    text-transform: lowercase;
-    margin-bottom: .8em;
-    color: #888;
-}
-
-.nav-listLink {
+// Remove underline from links.
+.nav-link {
     text-decoration: none;
 }
 
-.nav-listLink:hover {
-    color: #444;
+// Display an indicator which indicates that links redirects outside website.
+.nav-link--external::after {
+    $rightwards-sans-serif-arrow-unicode: "\1f852";
+    content: $rightwards-sans-serif-arrow-unicode;
+    font-size: $font-size-smaller * .90; // A percentage of.
+    position: relative;
 }
 
-.nav-listLink--external::after {
-    content: "\21B5";
+.nav-title {
+    color: $color-text-heading-invert;
+    font-weight: $font-weight-bolder;
+    letter-spacing: 1px;
+    position: relative;
 }

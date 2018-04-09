@@ -1,33 +1,26 @@
+$board--accent-bar-height: 3px;
+
 .board {
-    border-style: solid;
-    border-color: #E0E0E0;
+    background-color: $color-primary;
 }
 
-.board--white {
-    background-color: $pure-white;
+// Establish some global rules for the glowing border.
+.board::before {
+    height: $board--accent-bar-height;
+    width: 100%;
+    display: block;
 }
 
-.board--borderLeft {
-    border-left-width: 1px;
+.board::before {
+    content: "";
+    background-image: linear-gradient(90deg, lighten( $color-accent, 10% ), lighten( $color-accent-counter, 10% ));
 }
 
-.board--borderRight {
-    border-right-width: 1px;
+.board--404 {
+    background-image: linear-gradient(90deg, $color-accent, $color-accent-counter);
 }
 
-.board--borderTop {
-    border-top-width: 1px;
-}
-
-.board--borderBottom {
-    border-bottom-width: 1px;
-}
-
-.board--borderRules {
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-}
-
-.board--borderFull {
-    border-width: 1px;
+.board--404::before {
+    content: "";
+    background-image: linear-gradient(90deg, lighten( complement($color-accent), 10% ), lighten( complement($color-accent-counter), 10% ));
 }

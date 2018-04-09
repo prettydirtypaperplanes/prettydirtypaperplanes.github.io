@@ -1,0 +1,30 @@
+{% comment %}
+    Post meta component.
+
+    @param source (object): The post to display.  Assumes that $source has common properties such as `title`, `content`, `url`, etc.
+    @param date (string): (Optional) The date to display.
+    @param title (string): (Optional) The title to display.
+{% endcomment %}
+
+<div class="post-meta">
+    {% comment %}
+        The format for the `datetime` attribute is `YYYY-MM-DDTHH:MM:SS.DD±HH:MM`
+        For more info, visit https://www.w3.org/TR/html51/infrastructure.html#dates-and-times
+    {% endcomment %}
+    {% if include.source.date or include.date %}
+        {% comment %} If defined, display the custom date provided via the include parameter `date`. Otherwise, display the date of the source. {% endcomment %}
+        {% if include.date %}
+            {% assign include.source.date = include.date %}
+        {% endif %}
+        <time class="post-date" datetime="{{ include.source.date | date: "%Y-%m-%dT%H:%M:%S" }}{{ include.source.date | date: "%z" | slice: 0, 3 }}:{{ include.source.date | date: "%z" | slice: 3, 4 }}">{{ include.source.date | date: "%B %d, %Y" }}</time>
+    {% endif %}
+
+    <h1 class="post-heading">
+        {% comment %} If defined, display the custom title provided via the include parameter `title`. Otherwise, display the title of the source. {% endcomment %}
+        {% if include.title %}
+            {{ include.title | smartify }}
+        {% else %}
+            <a class="post-link" href="{{ include.source.url | absolute_url }}">{{ include.source.title | smartify }}</a>
+        {% endif %}
+    </h1>
+</div>

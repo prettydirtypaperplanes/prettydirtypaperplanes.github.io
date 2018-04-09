@@ -1,15 +1,15 @@
 .post {
-    color: #1F1F1F;
-    font-size: 18px;
+    color: $color-text;
 }
 
 .post-meta {
 }
 
 .post-date, .post-subtitle {
-    color: #ccc;
-    font-size: .8em;
-    font-weight: 700;
+    font-family: $font-family-heading;
+    color: $color-text-weaker;
+    font-size: $font-size-tiny;
+    font-weight: $font-weight-bolder;
     transition: color .2s;
 }
 
@@ -18,13 +18,9 @@
 }
 
 .post-heading {
-    font-size: 1.75em;
-    font-weight: 700;
-}
-
-.page-heading {
-    font-size: 1.75em;
-    font-weight: 700;
+    font-family: $font-family-heading;
+    font-size: $font-size-larger;
+    font-weight: $font-weight-bolder;
 }
 
 .post-link {
@@ -32,115 +28,29 @@
 }
 
 .post-readmore {
-    color: #000;
-    font-size: .875em;
-    /*
-    color: gray;
-    background-color: #fff;
-    border-style: solid;
-    border-width: 1px;
-    border-color: gray;
-    font-size: .85em;
-    padding: .4em 1em;
+    color: $color-text-link;
+    font-size: $font-size-regular;
+    font-style: italic;
+    box-shadow: inset 0px -2px 0px $color-text-link-decoration-weak;
     text-decoration: none;
-    @include border-radius(1em); */
 }
 
 .post-readmore:hover {
-    color: red;
+    color: $color-text-link-hover;
+}
+
+.post-readmore:visited {
+    color: $color-text-link-visited;
 }
 
 .post-content {
-    font-family: "Merriweather", serif;
-    font-size: 1em;
     line-height: 175%;
 }
 
-.post-tags {
-    font-size: .8em;
-    list-style-type: none;
-    margin-top: .5rem;
-    padding: {
-        top: 1rem;
-        bottom: 1rem;
-    }
-}
-
-.post-tags::after {
-    @include clearfix;
-}
-
-.post-tag {
-    float: left;
-    background-color: #eee;
-    color: #666;
-    font-size: .9em;
-    text-transform: capitalize;
-    $height: 2rem;
-    height: $height;
-    line-height: $height;
-    white-space: nowrap; // never break a tag
-    margin-right: 1rem;
-    $horizontal-padding: .5rem;
-    padding: {
-        left: $horizontal-padding;
-        right: $horizontal-padding;
-    }
-    @include border-radius(2px);
-}
-
-.post-tag:last-of-type {
-    margin-right: 0rem;
-}
-
-.post-authors {
-    border-top: 1px solid #eee;
-    margin-top: 1rem;
-    padding-top: 1rem;
-}
-
-.post-authorsHeading {
-    font-size: .8em;
-    color: #bbb;
-    text-transform: uppercase;
-    padding: {
-        top: 1rem;
-        bottom: .5rem;
-    }
-}
-
-.post-author {
-    margin-top: 1.5rem;
-    width: 80%; // Make author width small to accomodate a neater-looking bio text.
-}
-
-.post-author::after {
-    @include clearfix;
-}
-
-.post-authorIcon {
-    float: left;
-    $size: 0rem;
-    width: $size;
-    height: $size;
-}
-
-.post-authorName {
-}
-
-.post-authorBio {
-    color: #666;
-    font-size: .8em;
-}
-
-.post-authorName, .post-authorBio {
-    padding-left: 0rem;
-}
-
 .post-nav {
+    font-size: 1rem;
     margin-top: 5rem;
-    padding: 2rem 0px;
-    border-top: 1px solid #eee;
+    padding: 4rem 0px;
 }
 
 .post-nav::after {
@@ -148,7 +58,6 @@
 }
 
 .post-prev, .post-next {
-    font-size: .9em;
     width: 50%;
     float: left;
 }
@@ -162,13 +71,28 @@
 }
 
 .post-navLabel {
-    color: #888;
-    font-size: .9em;
+    color: $color-text-weaker;
+    font-family: $font-family-heading;
+    font-weight: $font-weight-bolder;
+    font-size: $font-size-small;
     text-transform: uppercase;
 }
 
 .post-navLink {
+    color: $color-text-link;
+    font-size: $font-size-large;
+    font-style: italic;
+    box-shadow: inset 0px -2px 0px $color-text-link-decoration-weak;
+    text-decoration: none;
     margin-top: 1rem;
+}
+
+.post-navLink:hover {
+    color: $color-text-link-hover;
+}
+
+.post-navLink:visited {
+    color: $color-text-link-visited;
 }
 
 // Utility: Center text.

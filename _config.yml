@@ -17,14 +17,14 @@ title: Pretty, Dirty Paper Planes
 byline: false
 email: your-email@example.com
 description: > # this means to ignore newlines until "baseurl:"
-  We write about the design and build of Project Gem, an e-commerce webapp in Antigua.
-  We openly share our process in a practice of designing
-  in the open.
+  A blog about the design and build of an e-commerce webapp in Antigua,
+  in a brave practice of designing in the open. It's an ambitious
+  project to build a product from the ground up.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://prettydirtypaperplanes.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username: prettydirtypaperplanes
-permalink: /:title
+permalink: /:year/:month/:day/:title
 
 # Build settings
 markdown: kramdown

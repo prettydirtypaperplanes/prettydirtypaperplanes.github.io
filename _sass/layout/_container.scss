@@ -11,14 +11,14 @@
 .container {
     max-width: 900px;
     max-width: 660px; // Aim for a width that allows for a width of 60-80 characters
-    max-width: 65ch; // Aim for a width that allows for a width of 60-80 characters
+    max-width: 44rem; // Aim for a width that allows for a width of 60-80 characters
     margin: {
         left: auto;
         right: auto;
     };
     padding: {
-        left: 20px;
-        right: 20px;
+        left: $container-padding-size;
+        right: $container-padding-size;
     }
 }
 
